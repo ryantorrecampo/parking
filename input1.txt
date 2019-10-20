@@ -1,4 +1,4 @@
-Capacity:7
+Capacity:2
 ID:Acura
 ID:Honda
 ID:Lexus

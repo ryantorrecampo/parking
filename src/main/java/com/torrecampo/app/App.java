@@ -4,9 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 public class App {
 
@@ -41,60 +45,76 @@ public class App {
             cars.put(carIDs.get(i), new Car(carIDs.get(i), durations.get(i)));
         }
 
+        Queue<Car> q = new LinkedList<>();
         // Execute sequence
-        for (String s : sequence) {
-            if (s.startsWith("Enters:")) {
-                int i = 0;
+        for (int j = 0; j < sequence.size(); j++) {
+            String s = sequence.get(j);
+            System.out.println(s);
+            System.out.println(j);
+            here: if (q.peek() != null && lot.hasSpots()) {
+                Car curr = q.remove();
+                ParkingSpot temp = new ParkingSpot();
+                // Find open parking spot
+                for (int i = 0; i < lot.parkingSpots.size(); i++) {
+                    if (lot.parkingSpots.get(i).isOpen()) {
+                        System.out.println();
+                        try {
+                            temp.parkCar(curr);
+                            Thread.sleep(1000);
+                            lot.parkingSpots.put(i, temp);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                    }
+                }
+            } else if (s.startsWith("Enters:")) {
                 String car = s.substring(7);
                 Car curr = cars.get(car);
-                ParkingSpot temp = lot.parkingSpaces.get(i);
-                // find an open parking spot
-                while (!temp.isOpen()) {
-                    i++;
-                    temp = lot.parkingSpaces.get(i);
+                ParkingSpot temp = new ParkingSpot();
+                // Find open parking spot
+                for (int i = 0; i < lot.parkingSpots.size(); i++) {
+                    if (lot.parkingSpots.get(i).isOpen()) {
+                        try {
+                            temp.parkCar(curr);
+                            Thread.sleep(1000);
+                            lot.parkingSpots.put(i, temp);
+                            break here;
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                    }
                 }
-                curr.recieveTicket(new Ticket());
-                temp.parkCar(curr);
-                lot.parkingSpaces.put(i, temp);
+                System.out.println("The lot is currently full...Adding " + curr.getID() + " to queue");
+                q.add(curr);
+
+            } else if (s.startsWith("Exits:")) {
+                String car = s.substring(6);
+                ParkingSpot temp = new ParkingSpot();
+                for (int i = 0; i < lot.parkingSpots.size(); i++) {
+                    if (!lot.parkingSpots.get(i).isOpen()) {
+                        if ((lot.parkingSpots.get(i).car.getID()).equals(car)) {
+                            temp = lot.parkingSpots.get(i);
+                            try {
+                                temp.car.recieveTicket(new Ticket());
+                                double cost = temp.car.ticket.getPrice(temp.car.getDuration());
+                                lot.profit += cost; // Car pays the ticket
+                                temp.removeCar();
+                                if (q.peek() != null) {
+                                    temp.parkCar(q.remove());
+                                }
+                                Thread.sleep(1000);
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+                        }
+                    }
+                }
+
             }
         }
 
-        // Get status of the parking lot
-        for (ParkingSpot spot : lot.parkingSpaces.values()) {
-            if (spot.isOpen())
-                System.out.println("This spot is open");
-            else {
-                double cost = spot.car.ticket.getPrice(spot.car.getDuration());
-                System.out.println("This spot is taken by " + spot.car.ID + ". They will be charged $" + cost);
-            }
-        }
-
-        // Give tickets
-        // for (Car obj : cars.values()) {
-        // obj.recieveTicket(new Ticket());
-        // double cost = obj.ticket.getPrice(obj.getDuration());
-        // System.out.println("This ticket costs " + cost + " for car " + obj.getID());
-        // }
-
-        // System.out.println("There are " + numCars + " cars currently in the parking
-        // lot.");
-
-        // for (Car obj : parkingSpaces) {
-        // System.out.println(obj.getID() + " will be here for " + obj.getDuration());
-        // }
-
-        // for (int i = 0; i < cars.size(); i++) {
-        // Car obj = cars.get(i);
-        // obj.recieveTicket(new Ticket());
-        // obj.ticket.printTicketInfo();
-        // }
-
-        // Ticket test = new Ticket();
-        // Car one = new Car("12345");
-        // one.recieveTicket(test);
-        // one.ticket.printTicketInfo();
-        // if (one.hasTicket())
-        // System.out.println("Car " + one.ID + " has a ticket");
-
+        lot.profit = BigDecimal.valueOf(lot.profit).setScale(4, RoundingMode.HALF_UP).doubleValue();
+        System.out.println("The parking lot made a total of $" + lot.profit);
     }
+
 }
