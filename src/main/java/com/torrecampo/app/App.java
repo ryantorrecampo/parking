@@ -49,8 +49,8 @@ public class App {
         // Execute sequence
         for (int j = 0; j < sequence.size(); j++) {
             String s = sequence.get(j);
-            System.out.println(s);
-            System.out.println(j);
+            // System.out.println(s);
+            // System.out.println(j);
             here: if (q.peek() != null && lot.hasSpots()) {
                 Car curr = q.remove();
                 ParkingSpot temp = new ParkingSpot();
@@ -69,6 +69,9 @@ public class App {
                 }
             } else if (s.startsWith("Enters:")) {
                 String car = s.substring(7);
+                // if (cars.get(car) == null) {
+                // System.out.println("This car does not exist");
+                // }
                 Car curr = cars.get(car);
                 ParkingSpot temp = new ParkingSpot();
                 // Find open parking spot

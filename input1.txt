@@ -1,19 +1,9 @@
 Capacity:2
-ID:Acura
-ID:Honda
-ID:Lexus
-ID:Ford
-ID:Audi
-Duration:53
-Duration:34
-Duration:92
-Duration:45
-Duration:79
-Enters:Acura
-Enters:Lexus
-Enters:Honda
-Exits:Acura
-Exits:Honda
+Enters:Acura, 53
+Enters:Lexus, 34
+Enters:Honda, 92
+Exits:Acura, 45
+Exits:Honda, 79
 Enters:Ford
 Exits:Lexus
 Enters:Audi
