@@ -1,11 +1,11 @@
 Capacity:2
-Enters:Acura, 53
-Enters:Lexus, 34
-Enters:Honda, 92
-Exits:Acura, 45
-Exits:Honda, 79
-Enters:Ford
+Enters:Acura,53
+Enters:Lexus,34
+Enters:Honda,92
+Exits:Acura
+Exits:Honda
+Enters:Ford,45
 Exits:Lexus
-Enters:Audi
+Enters:Audi,79
 Exits:Ford
 Exits:Audi

@@ -22,4 +22,4 @@ input3.txt - Shows that if a car doesn't leave, the proft will be lower since th
 
 input4.txt - Shows that if the lot is full and the cars inside don't leave, the cars in the queue never enter. Also since no car left, the lot made \$0 at the time of calcuation.
 
-input5.txt -
+input5.txt - Shows that a car without a duration will cause the program to exit. It needs the duration to calculate the ticket cost.

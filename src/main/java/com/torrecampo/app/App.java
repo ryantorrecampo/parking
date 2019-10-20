@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
 
 public class App {
@@ -18,9 +16,6 @@ public class App {
         File file = new File(args[0]);
         BufferedReader br = new BufferedReader(new FileReader(file.getAbsoluteFile()));
         int capacity = 0;
-        ArrayList<String> carIDs = new ArrayList<String>();
-        Map<String, Car> cars = new HashMap<String, Car>();
-        ArrayList<Integer> durations = new ArrayList<Integer>();
         ArrayList<String> sequence = new ArrayList<String>();
 
         // Parse input file
@@ -28,10 +23,6 @@ public class App {
         while ((line = br.readLine()) != null) {
             if (line.startsWith("Capacity:"))
                 capacity = Integer.parseInt(line.substring(9));
-            if (line.startsWith("ID:"))
-                carIDs.add(line.substring(3));
-            if (line.startsWith("Duration:"))
-                durations.add(Integer.parseInt(line.substring(9)));
             if (line.startsWith("Enters:") || line.startsWith("Exits:"))
                 sequence.add(line);
         }
@@ -39,11 +30,6 @@ public class App {
 
         // Create the parking lot
         ParkingLot lot = new ParkingLot(capacity);
-
-        // Create hash map of cars
-        for (int i = 0; i < carIDs.size(); i++) {
-            cars.put(carIDs.get(i), new Car(carIDs.get(i), durations.get(i)));
-        }
 
         Queue<Car> q = new LinkedList<>();
         // Execute sequence
@@ -68,11 +54,13 @@ public class App {
                     }
                 }
             } else if (s.startsWith("Enters:")) {
-                String car = s.substring(7);
-                // if (cars.get(car) == null) {
-                // System.out.println("This car does not exist");
-                // }
-                Car curr = cars.get(car);
+                if (s.indexOf(',') < 0) {
+                    System.err.println("Invalid format. No duration was given. Please check format and try agan.");
+                    System.exit(0);
+                }
+                String car = s.substring(7, s.indexOf(','));
+                int dur = Integer.parseInt(s.substring(s.indexOf(',') + 1));
+                Car curr = new Car(car, dur);
                 ParkingSpot temp = new ParkingSpot();
                 // Find open parking spot
                 for (int i = 0; i < lot.parkingSpots.size(); i++) {

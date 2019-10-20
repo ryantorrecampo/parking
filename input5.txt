@@ -1,0 +1,8 @@
+Capacity:3
+Enters:Acura
+Enters:Lexus
+Enters:Honda
+Enters:Ford
+Enters:Audi
+Exits:Ford
+Exits:Audi
