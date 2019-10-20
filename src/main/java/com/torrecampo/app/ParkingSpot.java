@@ -1,8 +1,5 @@
 package com.torrecampo.app;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 public class ParkingSpot {
     Car car;
     private boolean open;
@@ -24,8 +21,7 @@ public class ParkingSpot {
             open = true;
             System.out.println(car.getID() + " has left the spot. They were here for " + car.getDuration()
                     + " minutes, and got here at " + car.ticket.timestamp + ". They will be charged $"
-                    + BigDecimal.valueOf(car.ticket.getPrice(car.getDuration())).setScale(4, RoundingMode.HALF_UP)
-                            .doubleValue());
+                    + car.ticket.getPrice(car.getDuration()));
         }
     }
 
