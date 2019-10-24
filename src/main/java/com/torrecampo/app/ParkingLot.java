@@ -9,9 +9,11 @@ public class ParkingLot {
     EnterGate entrance;
     ExitGate exit;
     double profit;
+    String name;
 
-    public ParkingLot(int cap) {
+    public ParkingLot(int cap, String name) {
         this.capacity = cap;
+        this.name = name;
         parkingSpots = new HashMap<Integer, ParkingSpot>(this.capacity);
         for (int i = 0; i < capacity; i++) {
             parkingSpots.put(i, new ParkingSpot());

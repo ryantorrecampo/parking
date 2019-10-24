@@ -1,4 +1,5 @@
-Capacity:2
+Lot:A,2
+Lot:B,4
 Enters:Acura,53
 Enters:Lexus,34
 Enters:Honda,92
