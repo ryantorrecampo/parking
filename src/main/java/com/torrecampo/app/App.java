@@ -35,8 +35,8 @@ public class App {
 
         for (int i = 0; i < groups.size(); i++) {
             RunParkingLot test = new RunParkingLot(groups.get(i), sequence);
-            groups.get(i).getInfo();
-            System.out.println("Running sequence for parking lot: " + groups.get(i).name);
+            // groups.get(i).getInfo();
+            System.out.println("Running sequence for parking lot group: " + groups.get(i).name);
             test.start();
         }
     }

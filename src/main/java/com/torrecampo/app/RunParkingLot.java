@@ -49,6 +49,7 @@ public class RunParkingLot {
                 String car = s.substring(7, s.indexOf(','));
                 int dur = Integer.parseInt(s.substring(s.indexOf(',') + 1));
                 Car curr = new Car(car, dur);
+                gr.setDiscount(curr);
                 ParkingSpot temp = new ParkingSpot();
                 // Find open parking spot
                 for (int i = 0; i < lot.parkingSpots.size(); i++) {
@@ -92,7 +93,8 @@ public class RunParkingLot {
             }
         }
 
-        lot.profit = BigDecimal.valueOf(lot.profit).setScale(4, RoundingMode.HALF_UP).doubleValue();
+        lot.profit = BigDecimal.valueOf(lot.profit).setScale(2, RoundingMode.HALF_UP).doubleValue();
         System.out.println("The parking lot made a total of $" + lot.profit);
+        gr.getParkingSpots();
     }
 }

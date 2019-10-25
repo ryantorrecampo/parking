@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    private final int capacity;
+    public final int capacity;
     public Map<Integer, ParkingSpot> parkingSpots;
     EnterGate entrance;
     ExitGate exit;
@@ -26,6 +26,15 @@ public class ParkingLot {
                 return true;
         }
         return false;
+    }
+
+    public int getOpenSpots() {
+        int count = 0;
+        for (int i = 0; i < parkingSpots.size(); i++) {
+            if (parkingSpots.get(i).isOpen())
+                count++;
+        }
+        return count;
     }
 
 }

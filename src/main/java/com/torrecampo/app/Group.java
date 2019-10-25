@@ -16,7 +16,7 @@ public class Group {
         this.lot = lot;
         this.name = groupName;
         this.price = p;
-        this.discount = d;
+        this.discount = 1 - d;
     }
 
     public void getInfo() {
@@ -25,8 +25,16 @@ public class Group {
     }
 
     public void setDiscount(Car c) {
-        if (asianCars.contains(c.ID)) {
-
+        if (asianCars.contains(c.ID) && name.equals("Asian")) {
+            c.price = price * discount;
+        } else if (americanCars.contains(c.ID) && name.equals("American")) {
+            c.price = price * discount;
+        } else {
+            c.price = price;
         }
+    }
+
+    void getParkingSpots() {
+        System.out.println("There are " + lot.getOpenSpots() + " spots available.");
     }
 }
