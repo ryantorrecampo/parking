@@ -6,10 +6,11 @@ import java.time.Instant;
 
 public class Ticket {
     protected Instant timestamp;
-    // double price;
+    double price;
 
-    public Ticket() {
+    public Ticket(double pr) {
         this.timestamp = Instant.now();
+        this.price = pr;
     }
 
     public void printTicketInfo() {
@@ -21,6 +22,6 @@ public class Ticket {
     }
 
     public double getPrice(int dur) {
-        return BigDecimal.valueOf(.10 * dur).setScale(3, RoundingMode.HALF_UP).doubleValue();
+        return BigDecimal.valueOf(price * dur).setScale(3, RoundingMode.HALF_UP).doubleValue();
     }
 }

@@ -9,15 +9,16 @@ import java.util.Queue;
 public class RunParkingLot {
 
     ParkingLot lot;
+    Group gr;
     ArrayList<String> sequence;
 
-    public RunParkingLot(ParkingLot lot, ArrayList<String> seq) {
-        this.lot = lot;
+    public RunParkingLot(Group g, ArrayList<String> seq) {
+        this.gr = g;
+        this.lot = gr.lot;
         this.sequence = seq;
     }
 
     public void start() {
-
         Queue<Car> q = new LinkedList<>();
         // Execute sequence
         for (int j = 0; j < sequence.size(); j++) {
@@ -73,7 +74,7 @@ public class RunParkingLot {
                         if ((lot.parkingSpots.get(i).car.getID()).equals(car)) {
                             temp = lot.parkingSpots.get(i);
                             try {
-                                temp.car.recieveTicket(new Ticket());
+                                temp.car.recieveTicket(new Ticket(temp.car.price));
                                 double cost = temp.car.ticket.getPrice(temp.car.getDuration());
                                 lot.profit += cost; // Car pays the ticket
                                 temp.removeCar();

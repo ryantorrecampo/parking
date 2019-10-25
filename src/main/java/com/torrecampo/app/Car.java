@@ -5,6 +5,8 @@ public class Car {
     protected Ticket ticket;
     private boolean hasTicket;
     protected int duration;
+    private ParkingLot lot;
+    double price = 0;
 
     public Car(String identification, int dur) {
         this.ID = identification;
@@ -31,5 +33,9 @@ public class Car {
 
     int getDuration() {
         return this.duration;
+    }
+
+    boolean atLot() {
+        return this.lot == null ? false : true;
     }
 }

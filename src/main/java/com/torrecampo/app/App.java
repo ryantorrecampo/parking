@@ -12,26 +12,31 @@ public class App {
         File file = new File(args[0]);
         BufferedReader br = new BufferedReader(new FileReader(file.getAbsoluteFile()));
         ArrayList<String> sequence = new ArrayList<String>();
-        ArrayList<ParkingLot> lots = new ArrayList<ParkingLot>();
-        // ArrayList<ArrayList<String>> sequences = new ArrayList<ArrayList<String>>();
+        ArrayList<Group> groups = new ArrayList<Group>();
 
         // Parse input file
         String line;
         while ((line = br.readLine()) != null) {
-            if (line.startsWith("Lot:")) {
-                int cap = Integer.parseInt(line.substring(6));
-                String name = line.substring(4, line.indexOf(','));
+            if (line.startsWith("Group:")) {
+                String groupName = line.substring(6, line.indexOf('|'));
+                String name = line.substring(line.indexOf('|') + 1, line.indexOf('#'));
+                int cap = Integer.parseInt(line.substring(line.indexOf('#') + 1, line.indexOf("$")));
+                double price = Double.parseDouble(line.substring(line.indexOf('$') + 1, line.indexOf('%')));
+                double discount = Double.parseDouble(line.substring(line.indexOf('%') + 1));
+
                 ParkingLot lot = new ParkingLot(cap, name);
-                lots.add(lot);
+                Group gr = new Group(groupName, lot, price, discount);
+                groups.add(gr);
             }
             if (line.startsWith("Enters:") || line.startsWith("Exits:"))
                 sequence.add(line);
         }
         br.close();
 
-        for (int i = 0; i < lots.size(); i++) {
-            RunParkingLot test = new RunParkingLot(lots.get(i), sequence);
-            System.out.println("Running sequence for parking lot: " + lots.get(i).name);
+        for (int i = 0; i < groups.size(); i++) {
+            RunParkingLot test = new RunParkingLot(groups.get(i), sequence);
+            groups.get(i).getInfo();
+            System.out.println("Running sequence for parking lot: " + groups.get(i).name);
             test.start();
         }
     }
