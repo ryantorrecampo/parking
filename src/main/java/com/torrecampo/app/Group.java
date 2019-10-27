@@ -20,6 +20,7 @@ public class Group {
     }
 
     public void getInfo() {
+        // Cars can inquire latest price/send latest prices to interested cars
         System.out.println("Price: " + this.price);
         System.out.println("Discount: " + this.discount);
     }
@@ -27,14 +28,20 @@ public class Group {
     public void setDiscount(Car c) {
         if (asianCars.contains(c.ID) && name.equals("Asian")) {
             c.price = price * discount;
+            System.out.println("Discount for Asian cars applied!");
         } else if (americanCars.contains(c.ID) && name.equals("American")) {
             c.price = price * discount;
+            System.out.println("Discount for American cars applied!");
+        } else if (name.equals("Free")) {
+            c.price = 0;
+            System.out.println("This garage is free of charge!");
         } else {
             c.price = price;
         }
     }
 
-    void getParkingSpots() {
+    public void getParkingSpots() {
+        // Cars can inquire availability of parking space
         System.out.println("There are " + lot.getOpenSpots() + " spots available.");
     }
 }

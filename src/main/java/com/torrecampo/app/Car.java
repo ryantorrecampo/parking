@@ -36,6 +36,7 @@ public class Car {
     }
 
     boolean atLot() {
+        /// used to make sure cars can only be at one place at a time
         return this.lot == null ? false : true;
     }
 }

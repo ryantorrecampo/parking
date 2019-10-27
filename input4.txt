@@ -1,8 +1,12 @@
-Capacity:3
+Group:Asian|A#1$.10%.10
+Group:American|B#1$.15%.15
 Enters:Acura,53
 Enters:Lexus,34
 Enters:Honda,92
+Exits:Acura
+Exits:Honda
 Enters:Ford,45
-Enters:Audi,79
+Exits:Lexus
+Enters:Chevy,79
 Exits:Ford
-Exits:Audi
+Exits:Chevy

@@ -28,7 +28,7 @@ public class ParkingLot {
         return false;
     }
 
-    public int getOpenSpots() {
+    int getOpenSpots() {
         int count = 0;
         for (int i = 0; i < parkingSpots.size(); i++) {
             if (parkingSpots.get(i).isOpen())

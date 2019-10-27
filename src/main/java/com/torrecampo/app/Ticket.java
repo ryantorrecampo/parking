@@ -22,6 +22,6 @@ public class Ticket {
     }
 
     public double getPrice(int dur) {
-        return BigDecimal.valueOf(price * dur).setScale(3, RoundingMode.HALF_UP).doubleValue();
+        return BigDecimal.valueOf(price * dur).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }

@@ -28,4 +28,5 @@ public class ParkingSpot {
     public boolean isOpen() {
         return open ? true : false;
     }
+
 }
