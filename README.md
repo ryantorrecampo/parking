@@ -14,14 +14,14 @@ All input text files should be placed in the root of the project.
 
 ## Input format
 
-Group:[Car ID]|[Lot]#[Capacity]$[cost]%[Discount]
+Group:[Origin]|[Lot]#[Capacity]\$[cost]%[Discount]
 Enters:[Car ID],[Duration]
 Exits: [Car ID]
 
 ### Example
 
-Group:Asian|A#20$.10%.10
-Group:American|B#4$.15%.15
+Group:Asian|A#20\$.10\%.10
+Group:American|B#4\$.15\%.15
 Enters:Acura,53
 Enters:Lexus,34
 Enters:Honda,92
