@@ -23,16 +23,27 @@ Exits: [Car ID]
 ### Example
 
 Group:Asian|A#20\$.10\%.10
+
 Group:American|B#4\$.15\%.15
+
 Enters:Acura,53
+
 Enters:Lexus,34
+
 Enters:Honda,92
+
 Exits:Acura
+
 Exits:Honda
+
 Enters:Ford,45
+
 Exits:Lexus
+
 Enters:Chevy,79
+
 Exits:Ford
+
 Exits:Chevy
 
 ## Expected outputs
