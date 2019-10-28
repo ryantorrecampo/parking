@@ -14,7 +14,7 @@ All input text files should be placed in the root of the project.
 
 ## Input format
 
-Group:[Origin]|[Lot]#[Capacity]\$[cost]%[Discount]
+Group:[Origin]|[Lot]#[Capacity]\$[Cost]%[Discount]
 
 Enters:[Car ID],[Duration]
 
@@ -54,6 +54,6 @@ input2.txt - Shows that a car can only be in one place at a time.
 
 input3.txt - Shows that if a car tries to exit even if it already has, nothing will happen since the car cannot be found in any of the parking lots.
 
-input4.txt - Shows that a car will wait when both lots are fully occupied.
+input4.txt - Shows that a car will wait if both lots are fully occupied.
 
 input5.txt - Shows an example of a "free garage" where cars of any type can park without being charged.
