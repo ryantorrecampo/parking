@@ -15,7 +15,9 @@ All input text files should be placed in the root of the project.
 ## Input format
 
 Group:[Origin]|[Lot]#[Capacity]\$[cost]%[Discount]
+
 Enters:[Car ID],[Duration]
+
 Exits: [Car ID]
 
 ### Example
